@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+	 @import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&display=swap');
+        body {
+            font-family: 'Delius Swash Caps', cursive; /* Apply the font */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #ffe4e1; /* Light pink background */
+            overflow: hidden;
+        }
+        .box {
+            background: linear-gradient(145deg, #ffffff, #f3f3f3);
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            max-width: 90%;
+            width: 400px;
+        }
+        .message {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ff6f61;
+            opacity: 0;
+            animation: fadeInOut 3s ease-in-out forwards;
+            position: relative;
+            margin: 20px 0;
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            30% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        .question {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ff6f61;
+            margin-top: -130px;
+            padding: 10px 0;
+        }
+        .button-container {
+            
+	    display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 20px;
+        }
+        .button {
+	    font-family: 'Delius Swash Caps', cursive; /* Apply the font */
+            background-color: #ff6f61;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #ff4d40;
+        }
+        .love {
+            position: absolute;
+            color: #ff9393;
+            font-size: 2rem;
+            animation: roam 10s infinite ease-in-out;
+        }
+        @keyframes roam {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0.8;
+            }
+            25% {
+                transform: translate(30px, -50px) rotate(15deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-20px, -100px) rotate(-10deg);
+                opacity: 0.9;
+            }
+            75% {
+                transform: translate(40px, -150px) rotate(10deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(0, -200px) rotate(0deg);
+                opacity: 0.8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="message" style="animation-delay: 0s;">Wishing you the happiest of days!</div>
+        <div class="message" style="animation-delay: 3s;">You deserve all the joy and love!</div>
+        <div class="message" style="animation-delay: 6s;">Let's make this day unforgettable!</div>
+        <div class="question" style="display: none;" id="question">Wanna see what I made?</div>
+        <div class="button-container" style="display: none;" id="button-container">
+            <button class="button" onclick="goToNextPage()">Yes</button>
+            <button class="button" onclick="goToNextPage()">No</button>
+        </div>
+    </div>
+
+    <script>
+        // Show question and buttons after messages fade out
+        setTimeout(() => {
+            document.getElementById('question').style.display = 'block';
+            document.getElementById('button-container').style.display = 'flex';
+        }, 9000); // 3 seconds per message, 3 messages = 9 seconds
+
+        // Add roaming hearts
+        function createLove() {
+            const love = document.createElement('div');
+            love.className = 'love';
+            love.textContent = '❤️';
+            love.style.left = Math.random() * 100 + 'vw';
+            love.style.top = Math.random() * 100 + 'vh';
+            love.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(love);
+
+            setTimeout(() => {
+                love.remove();
+            }, 5000);
+        }
+
+        setInterval(createLove, 400);
+
+        function goToNextPage() {
+            window.location.href = 'decoration.html'; // Replace with your next page file
+        }
+    </script>
+</body>
+</html>

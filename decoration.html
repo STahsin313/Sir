@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decoration</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Amita', cursive !important;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            transition: background-color 0.5s;
+        }
+
+        .control-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 10;
+        }
+
+        .control-button:hover {
+            background-color: #ff4d40;
+        }
+
+        .banner {
+            position: absolute;
+            top: 10%;
+            display: none;
+            animation: fadeIn 2s forwards;
+            width: 70%;
+            max-width: 600px;
+            z-index: 5;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .cake {
+            display: none;
+            width: 300px;
+            height: auto;
+            position: absolute;
+            bottom: 10%;
+            z-index: 5;
+        }
+
+        .message-box {
+            display: none;
+            background: #ffefef;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2), -10px -10px 20px rgba(255, 255, 255, 0.8);
+            text-align: center;
+            width: 80%;
+            max-width: 500px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        .confetti-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="confetti-container" id="confetti-container">
+        <iframe src="https://lottie.host/embed/45b74b38-edc8-429c-a5e9-425fcd60976f/VPjGUEf0T5.lottie" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+    </div>
+    
+    <button class="control-button" id="control-button" onclick="toggleStage()">Lights On</button>
+    <img src="https://www.pngall.com/wp-content/uploads/2018/03/Happy-Birthday-Banner-PNG-Images.png" alt="Happy Birthday Banner" class="banner" id="banner">
+    <video src="https://cdn-icons-mp4.flaticon.com/512/18545/18545045.mp4" class="cake" id="cake" autoplay loop muted></video>
+    <div class="message-box" id="message-box">
+        <p>My love, you mean the world to me. Happy Birthday!</p>
+    </div>
+
+    <script>
+        let stage = 0;
+
+        function toggleStage() {
+            const body = document.body;
+            const button = document.getElementById('control-button');
+            const banner = document.getElementById('banner');
+            const cake = document.getElementById('cake');
+            const messageBox = document.getElementById('message-box');
+            const confetti = document.getElementById('confetti-container');
+
+            if (stage === 0) {
+                body.style.backgroundColor = 'white';
+                button.textContent = 'Decorate';
+                stage++;
+            } else if (stage === 1) {
+                banner.style.display = 'block';
+                confetti.style.display = 'block';
+                button.textContent = "Let's Cut the Cake!";
+                stage++;
+            } else if (stage === 2) {
+                cake.style.display = 'block';
+                button.textContent = 'Well, I have a message for you, my love';
+                stage++;
+            } else if (stage === 3) {
+                messageBox.style.display = 'block';
+                banner.style.display = 'none';
+                cake.style.display = 'none';
+                button.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
